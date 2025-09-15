@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import { initializeDatabase } from "./config/Database";
 import trackRouter from "./routes/TrackRoutes";
+import authRouter from "./routes/AuthRoutes";
 
 const app = express();
 app.use(express.json());
@@ -8,6 +9,12 @@ app.use(express.json());
 const port: number = 5000;
 
 app.use("/api/v1", trackRouter);
+app.use("/api/v1", authRouter);
+
+// this route is for health check of the app
+app.get("/health", (req: Request, res: Response) => {
+  res.status(200).json({ message: "OK" });
+});
 
 initializeDatabase()
   .then(() => {

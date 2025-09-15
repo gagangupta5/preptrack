@@ -1,6 +1,7 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 import { Track } from "../model/Track";
+import { User } from "../model/User";
 
 export const PostgresDataSource = new DataSource({
   type: "postgres",
@@ -11,7 +12,7 @@ export const PostgresDataSource = new DataSource({
   database: "preptrack",
   synchronize: true,
   logging: false,
-  entities: [Track],
+  entities: [Track, User],
   migrations: [],
   subscribers: [],
 });

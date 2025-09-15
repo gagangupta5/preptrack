@@ -1,3 +1,4 @@
+
 import { Repository } from "typeorm";
 import { User } from "../model/User";
 import { PostgresDataSource } from "../config/Database";
@@ -9,13 +10,11 @@ export class UserRepository {
     this.repository = PostgresDataSource.getRepository(User);
   }
 
-  async saveuser(user: User): Promise<User> {
+  async saveUser(user: Partial<User>): Promise<User> {
     return this.repository.save(user);
   }
 
   async findByEmail(email: string): Promise<User | null> {
     return this.repository.findOne({ where: { email } });
   }
-
-
 }
