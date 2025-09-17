@@ -3,12 +3,15 @@ import { sign } from "crypto";
 import { User } from "../model/User";
 import { UserService } from "./UserService";
 import bcrypt from "bcrypt";
+import { JwtService } from "./JwtService";
 
 export class AuthService {
   private userService: UserService;
+  private jwtService: JwtService;
 
   constructor() {
     this.userService = new UserService();
+    this.jwtService = new JwtService();
   }
 
   async signUp(signUpRequest: User): Promise<User | null> {

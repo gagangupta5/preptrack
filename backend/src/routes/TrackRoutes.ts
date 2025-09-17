@@ -7,11 +7,12 @@ import {
   findTracks,
   updateTrack,
 } from "../controller/TrackController";
+import { verifyToken } from "../middleware/AuthMiddleware";
 
 const trackRouter = express.Router();
 
 trackRouter.post("/tracks", createTrack);
-trackRouter.get("/tracks", findTracks);
+trackRouter.get("/tracks", verifyToken, findTracks);
 trackRouter.get("/tracks/:id", findTrackById);
 trackRouter.get("/tracks/slug/:id", findTrackBySlug);
 trackRouter.put("/tracks/:id", updateTrack);
