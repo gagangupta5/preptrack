@@ -31,7 +31,7 @@ export class AuthService {
     return createdUser;
   }
 
-  async signIn(signInRequest: User): Promise<User | null> {
+  async signIn(signInRequest: User): Promise<string | null> {
     const user = await this.userService.findByEmail(signInRequest.email);
 
     if (!user) {
@@ -44,7 +44,7 @@ export class AuthService {
     );
 
     if (isPasswordValid) {
-      return user;
+      return this.jwtService.generateToken(user.email, user.role, user.id);
     }
     return null;
   }

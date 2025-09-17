@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
-export const verifyToken = async (request: Request, response: Response, next: NextFunction) => {
+export const verifyToken =  (request: Request, response: Response, next: NextFunction) => {
     console.log("Verifying token...");
     const authHeaders = request.headers.authorization;
     if (!authHeaders || !authHeaders.startsWith("Bearer ")) {
