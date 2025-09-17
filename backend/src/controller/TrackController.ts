@@ -12,6 +12,7 @@ export const createTrack = async (request: Request, response: Response) => {
 };
 
 export const findTracks = async (_request: Request, response: Response) => {
+  console.log("Finding tracks...");
   try {
     const tracks = await trackService.findAll();
     response.status(200).json(tracks);
